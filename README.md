@@ -1,2 +1,2 @@
 # Dio_Backend-Developer
-repositório dedicado a projeto do BootCamp [Python AI Backend Developer]
+* Repositório dedicado a projetos do BootCamp [Python AI Backend Developer]
