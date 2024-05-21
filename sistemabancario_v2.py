@@ -72,9 +72,23 @@ def cadastrar_usuario(list_usuario, nome1, dt_nascimento1, cpf1, endereco1):
     - colocar para esse formato[endereco  string ( logradoro, nro - bairro - cidade/sigla estado)]
 
     '''
+def procurar_usuario(list_usuario, cpf1):
+    for usuario in list_usuario:
+        if usuario.get('cpf') == cpf1:
+            return usuario
+    print("CPF não encontrado no banco de dados")
+    return None
 
+'''##################################################'''
 
-menu = """
+menu_usuario = """
+
+[1] Selecionar Usuario
+[2] Adicionar Usuario
+
+=> """
+
+menu_conta = """
 
 [1] Depositar
 [2] Sacar
@@ -88,10 +102,30 @@ limite = 500
 extrato = ""
 numero_saques = 0
 LIMITE_SAQUES = 3
+lista_usuarios = []
+
+usuario_selecionado = None
+
+while usuario_selecionado == None:
+    opcao = input(menu_usuario)
+
+    if opcao == '1':
+        cpf = int(input("Digite o CPF: "))
+        usuario_selecionado = procurar_usuario(lista_usuarios, cpf)
+        
+    elif opcao == '2':
+        print("INFORME")
+        nome = input('Seu nome: ')
+        dt_nascimento = input("Sua data de nascimento: ")
+        cpf = int(input("Seu CPF: "))
+        endereco = input("Seu endereço: ")
+        cadastrar_usuario(lista_usuarios, nome, dt_nascimento, cpf, endereco) 
+
+
 
 while True:
 
-    opcao = input(menu)
+    opcao = input(menu_conta)
 
     if opcao == "1":
         valor = float(input("Informe o valor do depósito: "))
@@ -123,3 +157,42 @@ while True:
     else:
         print("Operação inválida, por favor selecione novamente a operação desejada.")
 
+
+
+
+
+
+    """
+    
+
+--	CADASTRAR USUARIO(CLIENTE)
+armazenar os usuarios em uma lista
+
+usuario [atributos] (nome, dt d nascimento, cpf e endereço)
+
+endereco  string ( logradoro, nro - bairro - cidade/sigla estado)
+
+somente numero d cpf
+
+nao pode 2 CPFs
+
+
+
+
+--	CADASTRAR CONTA BANCARIA
+conta corrente
+
+armazenar numa lista
+
+conta [atributos] (agencia, numero d conta, usuario)
+numero da conta eh sequencial (1,2,3,4...)
+agencia (0001) ever
+
+
+--	listar contas
+
+
+
+
+PARA VINCULAR UM USUARIO A UMA CONTA, FILTRE A LISTA DE USUARIOS BUSCANDO O NUMERO DO CPF INFORMADO PARA CADA USUARIO DA LISTA
+    """
