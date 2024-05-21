@@ -79,14 +79,50 @@ def procurar_usuario(list_usuario, cpf1):
     print("CPF não encontrado no banco de dados")
     return None
 
-'''##################################################'''
 
+def existencia_usuario(list_bancaria, usuario):
+    existe = False
+    for cpf in list_bancaria:
+        if cpf == usuario[cpf]:
+            existe = True
+            break
+    return existe
+        
+
+def cadastrar_conta_bancaria(list_bancaria, usuario):
+    
+    if existencia_usuario(list_bancaria, usuario):
+        nome_conta = f'Conta_{len(list_bancaria[usuario[cpf]])+1}'
+        
+        new_conta = {
+                    'agencia': '0001',
+                    'numero_conta': len(list_bancaria[usuario[cpf]])+1
+        }
+        list_bancaria[usuario[cpf]][nome_conta] = new_conta
+    else:
+        nome_conta = f'Conta_{1}'
+        
+        new_conta = {
+                    'agencia': '0001',
+                    'numero_conta': 1
+        }
+        list_bancaria[usuario[cpf]][nome_conta] = new_conta
+        
+'''##################################################'''
 menu_usuario = """
 
 [1] Selecionar Usuario
 [2] Adicionar Usuario
 
 => """
+
+menu_conta = """
+
+[1] Adicionar Conta
+
+"""
+
+
 
 menu_conta = """
 
@@ -102,7 +138,9 @@ limite = 500
 extrato = ""
 numero_saques = 0
 LIMITE_SAQUES = 3
+
 lista_usuarios = []
+lista_bancaria = []
 
 usuario_selecionado = None
 
@@ -112,7 +150,7 @@ while usuario_selecionado == None:
     if opcao == '1':
         cpf = int(input("Digite o CPF: "))
         usuario_selecionado = procurar_usuario(lista_usuarios, cpf)
-        
+
     elif opcao == '2':
         print("INFORME")
         nome = input('Seu nome: ')
@@ -120,6 +158,7 @@ while usuario_selecionado == None:
         cpf = int(input("Seu CPF: "))
         endereco = input("Seu endereço: ")
         cadastrar_usuario(lista_usuarios, nome, dt_nascimento, cpf, endereco) 
+
 
 
 
