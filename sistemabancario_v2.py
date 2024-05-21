@@ -46,6 +46,32 @@ def f_extrato(saldo, extrato):
     print("==========================================")
     
      
+def cadastrar_usuario(list_usuario, nome1, dt_nascimento1, cpf1, endereco1):
+
+
+    for usuario in list_usuario:
+        if usuario.get('cpf') == cpf1:
+            print(f'O CPF [{cpf1}] já está cadastrado')
+            return list_usuario
+
+    new_usuario = dict(
+                    nome = nome1, 
+                    dt_nascimento = dt_nascimento1, 
+                    cpf = cpf1, 
+                    endereco = endereco1
+    )
+
+    list_usuario.append(new_usuario)
+    print(f'Usuário {nome1} cadastrado com sucesso.')
+    return list_usuario
+
+    '''
+
+    FALTA:
+    - somente numero d cpf
+    - colocar para esse formato[endereco  string ( logradoro, nro - bairro - cidade/sigla estado)]
+
+    '''
 
 
 menu = """
@@ -97,4 +123,3 @@ while True:
     else:
         print("Operação inválida, por favor selecione novamente a operação desejada.")
 
-        
